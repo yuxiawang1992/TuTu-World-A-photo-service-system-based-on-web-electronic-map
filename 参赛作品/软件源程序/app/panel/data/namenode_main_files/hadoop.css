@@ -1,0 +1,168 @@
+body {
+	font-family: sans-serif; background-color: rgb(255, 255, 255);
+}
+.small {
+	font-size: smaller;
+}
+div#dfsnodetable tr#row1 {
+	font-weight: bolder;
+}
+div.dfstable td.col1 {
+	font-weight: bolder;
+}
+div.dfstable th {
+	text-align: left; vertical-align: top;
+}
+div.dfstable td#col3 {
+	text-align: right;
+}
+div#dfsnodetable caption {
+	text-align: left;
+}
+div#dfsnodetable a#title {
+	font-size: larger; font-weight: bolder;
+}
+div#dfsnodetable td {
+	padding-top: 4px; padding-bottom: 4px;
+}
+th {
+	padding-top: 4px; padding-bottom: 4px;
+}
+div#dfsnodetable a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+div#dfsnodetable th.header {
+	padding-top: 8px; padding-bottom: 8px;
+}
+th.headerASC {
+	padding-top: 8px; padding-bottom: 8px;
+}
+th.headerDSC {
+	padding-top: 8px; padding-bottom: 8px;
+}
+div#dfsnodetable th.header:hover {
+	text-decoration: underline; cursor: pointer;
+}
+th.headerASC:hover {
+	text-decoration: underline; cursor: pointer;
+}
+th.headerDSC:hover {
+	text-decoration: underline; cursor: pointer;
+}
+td.name:hover {
+	text-decoration: underline; cursor: pointer;
+}
+div#dfsnodetable td.blocks {
+	text-align: right;
+}
+td.size {
+	text-align: right;
+}
+td.pcused {
+	text-align: right;
+}
+td.adminstate {
+	text-align: right;
+}
+td.lastcontact {
+	text-align: right;
+}
+div#dfsnodetable .rowNormal .header {
+	background-color: rgb(255, 255, 255);
+}
+div#dfsnodetable .rowAlt {
+	background-color: lightyellow;
+}
+.headerASC {
+	background-color: lightyellow;
+}
+.headerDSC {
+	background-color: lightyellow;
+}
+.warning {
+	color: red; font-weight: bolder;
+}
+div.dfstable table {
+	white-space: pre;
+}
+table.storage {
+	border-collapse: collapse;
+}
+table.nodes {
+	border-collapse: collapse;
+}
+table.storage td {
+	padding: 10px; border: 1px solid black; border-image: none;
+}
+table.nodes td {
+	padding: 0px; border: 1px solid black; border-image: none;
+}
+div#dfsnodetable td {
+	border: 1px solid black; border-image: none; padding-right: 10px; padding-left: 10px;
+}
+div#dfsnodetable th {
+	border: 1px solid black; border-image: none; padding-right: 10px; padding-left: 10px;
+}
+div.dfstable td {
+	border: 1px solid black; border-image: none; padding-right: 10px; padding-left: 10px;
+}
+td.perc_filled {
+	background-color: rgb(170, 170, 255);
+}
+td.perc_nonfilled {
+	background-color: rgb(255, 255, 255);
+}
+line.taskgraphline {
+	stroke-linecap: round; stroke-width: 1;
+}
+#quicklinks {
+	margin: 0px; padding: 2px 4px; top: 0px; text-align: right; right: 0px; font-weight: bold; position: fixed; background-color: rgb(238, 238, 238);
+}
+#quicklinks ul {
+	margin: 0px; padding: 0px; font-weight: normal; list-style-type: none;
+}
+#quicklinks ul {
+	display: none;
+}
+#quicklinks a {
+	font-size: smaller; text-decoration: none;
+}
+#quicklinks ul a {
+	text-decoration: underline;
+}
+span.failed {
+	color: red;
+}
+div.security {
+	width: 100%;
+}
+#startupprogress table {
+	padding: 5px; text-align: left; border-right-color: black; border-left-color: black; border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid; border-collapse: collapse;
+}
+#startupprogress th {
+	padding: 5px; text-align: left; border-right-color: black; border-left-color: black; border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid; border-collapse: collapse;
+}
+#startupprogress td {
+	padding: 5px; text-align: left; border-right-color: black; border-left-color: black; border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid; border-collapse: collapse;
+}
+#startupprogress table {
+	border: 1px solid black; border-image: none;
+}
+.phase {
+	font-weight: bold; border-top-color: black; border-top-width: 1px; border-top-style: solid;
+}
+.current {
+	font-style: italic;
+}
+.later {
+	color: gray;
+}
+.step .startupdesc {
+	text-indent: 20px;
+}
+#startupprogress span {
+	font-weight: bold;
+}

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>地图切换</title>
+        <style type="text/css">
+            body{
+                margin: 0;
+                overflow: hidden;
+                background: #fff;
+            }
+            #map{
+                position: relative;
+                height: 520px;
+                border:1px solid #3473b7;
+            }
+            #toolbar{
+                position: relative;
+                height: 33px;
+                padding-top:5;
+            }
+        </style>
+        <script src='../libs/SuperMap.Include.js'></script>
+        <script src="http://maps.google.com/maps/api/js?v=3.5&amp;sensor=false" ></script>
+        <script src="./js/layer/SphericalMercator.js" ></script>
+        <script src="./js/layer/EventPane.js" ></script>
+        <script src="./js/layer/FixedZoomLevels.js" ></script>
+        <script src="./js/layer/Google.js" ></script>
+        <script src="./js/layer/Google.v3.js" ></script>
+        <script type="text/javascript">
+            var map, layer, ghyb, bGoogle = false;
+            function init(){
+                map = new SuperMap.Map("map", { controls:[
+                    new SuperMap.Control.ScaleLine(),
+                    new SuperMap.Control.LayerSwitcher(),
+                    new SuperMap.Control.Zoom(),
+                    new SuperMap.Control.Navigation({
+                        dragPanOptions:{
+                            enableKinetic:true
+                        }
+                    })]
+                });
+
+                layer = new SuperMap.Layer.CloudLayer();
+
+                ghyb = new SuperMap.Layer.Google(
+                        "Google Hybrid",
+                        {type:google.maps.MapTypeId.HYBRID, numZoomLevels:20}
+                );
+                map.addLayers([layer, ghyb]);
+
+                map.setCenter(new SuperMap.LonLat(11339634.286396, 4588716.5813769), 4);
+            }
+
+            function changeMap(e) {
+                if (bGoogle == false) {
+                    layer.setVisibility(false);
+                    ghyb.setVisibility(true);
+                    map.setBaseLayer(ghyb);
+
+                    document.getElementById("btn").value="平面地图";
+                    bGoogle = true;
+                } else if (bGoogle == true) {
+                    layer.setVisibility(true);
+                    ghyb.setVisibility(false);
+                    map.setBaseLayer(layer);
+
+                    document.getElementById("btn").value="卫星地图";
+                    bGoogle = false;
+                }
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <div id="toolbar">
+            <input id="btn" type="button" value="卫星地图" onclick="changeMap()" />
+        </div>
+        <div id="map"></div>
+    </body>
+</html>

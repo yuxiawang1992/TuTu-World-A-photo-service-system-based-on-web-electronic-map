@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond $1 !^(.*\.php|util)
+	RewriteRule ^([a-z0-9_-]+)$ /index.php?__mod=$1&__act=index [L]
+	RewriteRule ^([a-z0-9_-]+)/([a-z0-9_-]+)$ /index.php?__mod=$1&__act=$2 [L]
+	RewriteRule ^([a-z0-9_-]+)/([a-z0-9_-]+)/([^\.]+)$ /index.php?__mod=$1&__act=$2&__addition=$3 [L]
+</IfModule>
+#不知道为什么，在服务器上这两个type都没有
+AddType text/css .css
+AddType text/javascript .js

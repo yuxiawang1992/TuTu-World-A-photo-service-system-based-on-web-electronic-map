@@ -1,0 +1,102 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>TiledVectorLayer</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        #map {
+            position: relative;
+            height: 520px;
+            border: 1px solid #3473b7;
+        }
+
+        #toolbar {
+            position: relative;
+            height: 38px;
+
+        }
+
+        #btn {
+            margin-top: 5px;
+        }
+    </style>
+    <script src='../libs/SuperMap.Include.js'></script>
+    <script type="text/javascript">
+        var map, layerr, lat, lon, geolocate, infowin,     host = document.location.toString().match(/file:\/\//) ? "http://localhost:8090" : 'http://' + document.location.host;
+		url = host + "/iserver/services/map-china400/rest/maps/China";
+
+        function init() {
+            map = new SuperMap.Map("map", {controls: [
+                new SuperMap.Control.ScaleLine(),
+                new SuperMap.Control.Zoom(),
+                new SuperMap.Control.Navigation({
+                    dragPanOptions: {
+                        enableKinetic: true
+                    }
+                })]
+            });
+            layer = new SuperMap.Layer.TiledVectorLayer("China", url, {}, {cacheEnabled: true});
+            layer.events.on({"layerInitialized": addLayer});
+        }
+
+
+        function addLayer() {
+            map.addLayers([layer]);
+            var center = new SuperMap.LonLat(0,0);
+            map.setCenter(center, 1);
+            map.events.on({"click":mouseClickHandler});
+        }
+
+        function mouseClickHandler(event) {
+            if (!event.xy) {
+                return;
+            }
+            if (!event.xy.x) {
+                return;
+            }
+            var geometryInfo = layer.getGeometry(event.xy.x, event.xy.y);
+            if (!geometryInfo) {
+                return;
+            }
+            //这是底图，将其屏蔽掉
+            if (geometryInfo.layer === "World_Division@China400") {
+                return;
+            }
+            //高亮显示
+            layer.highlightGeometry(geometryInfo.layer, geometryInfo.geometry.id);
+
+
+            var lonLat = map.getLonLatFromPixel({"x": event.xy.x, "y": event.xy.y});
+            if(infowin){
+                try{
+                    infowin.hide();
+                    infowin.destroy();
+                }
+                catch(e){}
+            }
+            var contentHTML = "<div style='font-size:.8em; opacity: 0.8; overflow-y:hidden;'>";
+            contentHTML += "<div>"+"矢量数据ID："+geometryInfo.geometry.id+"<br />"+"所在数据源："+geometryInfo.layer.split("@")[1]+"<br />所在数据集："+geometryInfo.layer.split("@")[0]+"</div></div>";
+
+            var popup = new SuperMap.Popup.FramedCloud("popwin",
+                    lonLat,
+                    null,
+                    contentHTML,
+                    null,
+                    true);
+
+            infowin = popup;
+            map.addPopup(popup);
+        }
+
+    </script>
+</head>
+<body onload="init()">
+<div id="map" style="height:100%"></div>
+</body>
+</html>

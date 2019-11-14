@@ -1,0 +1,128 @@
+﻿<!DOCTYPE>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>聚类图层</title>
+        <style type="text/css">
+            body{
+                margin: 0;
+                overflow: hidden;
+                background: #fff;
+            }
+            #map{
+                position: relative;
+                height: 558px;
+                border:1px solid #3473b7;
+            }
+        </style>
+        <script src='../libs/SuperMap.Include.js'></script>
+        <script src='./data/changchundata.js'></script>
+        <script type="text/javascript">
+            var host = document.location.toString().match(/file:\/\//)?"http://localhost:8090":'http://' + document.location.host;
+            var map, layer,clusterLayer,infowin,
+            url=host+"/iserver/services/map-changchun/rest/maps/长春市区图";
+            var styleLine = {
+                strokeColor: "black",
+                strokeWidth: 1,
+                fill: false
+            };
+            function openInfoWin(feature){
+                var geo = feature.geometry;
+                var bounds = geo.getBounds();
+                var center = bounds.getCenterLonLat();
+                var contentHTML = "<div style='font-size:.8em; opacity: 0.8; overflow-y:hidden;'>";
+                contentHTML += "<div>"+feature.info.name+"</div></div>";
+
+                var popup = new SuperMap.Popup.FramedCloud("popwin",
+                        new SuperMap.LonLat(center.lon,center.lat),
+                        null,
+                        contentHTML,
+                        null,
+                        true);
+
+                feature.popup = popup;
+                infowin = popup;
+                map.addPopup(popup);
+            }
+            function closeInfoWin(){
+                if(infowin){
+                    try{
+                        infowin.hide();
+                        infowin.destroy();
+                    }
+                    catch(e){}
+                }
+            }
+            function init(){
+                map = new SuperMap.Map("map", { controls: [
+                    new SuperMap.Control.ScaleLine(),
+                    new SuperMap.Control.Zoom(),
+                    new SuperMap.Control.Navigation({
+                        dragPanOptions: {
+                            enableKinetic: true
+                        }
+                    })], units: "m"
+                });
+                layer = new SuperMap.Layer.TiledDynamicRESTLayer("changchun", url, {transparent: true, cacheEnabled: true, redirect: true}, {maxResolution:"auto"});
+                layer.events.on({"layerInitialized": addLayer});
+            }
+
+            function addLayer(){
+                clusterLayer = new SuperMap.Layer.ClusterLayer("Cluster");
+                map.addLayers([layer,clusterLayer]);
+                var select = new SuperMap.Control.SelectCluster(clusterLayer,{
+                    callbacks:{
+                        click:function(f){
+                            closeInfoWin();
+                            if(!f.isCluster){ //当点击聚合点的时候不弹出信息窗口
+                                openInfoWin(f);
+                            }
+                        },
+                        clickout:function(){
+                            closeInfoWin();
+                        }
+                    }
+                });
+                map.addControl(select);
+                map.setCenter(new SuperMap.LonLat(4803, -3726), 1);
+
+                clusterLayer.events.on({"moveend": function(e){
+                    if(e&& e.zoomChanged)closeInfoWin();
+                }});
+
+                select.activate();
+                var fs1 = getFeatures();
+                clusterLayer.addFeatures(fs1);
+            }
+
+            function getFeatures(){
+                var b = map.getExtent();
+                var ps = [];
+                var fs = changchundata;
+                for(var i=0;i<fs.length;i++){
+                    var fi = fs[i];
+                    var c = fi.geometry.center;
+
+                    var f = new SuperMap.Feature.Vector();
+                    f.geometry = new SuperMap.Geometry.Point(c.x, c.y);
+                    f.style = {
+                        pointRadius: 4,
+                        graphic:true,
+                        externalGraphic:"../theme/images/cluster4.png",
+                        graphicWidth:12,
+                        graphicHeight:12
+                    };
+                    f.info = {
+                        "name":fi.fieldValues[4]
+                    };
+                    ps.push(f);
+                }
+                return ps;
+
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <div id="map"></div>
+    </body>
+</html>

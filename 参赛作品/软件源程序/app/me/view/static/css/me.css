@@ -1,0 +1,356 @@
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -90px !important;
+    width: 180px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+.ta-body{
+  overflow-y:auto;
+}
+.ta-greeting{
+	letter-spacing: 0;
+}
+
+.ta-background {
+    position: fixed;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: opacity 618ms;
+    transition: opacity 618ms;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.ta-column-left{
+  width: 25%;
+}
+.ta-column-right{
+  margin-left: 25%;
+}
+
+
+body.me-login {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  border-top:1px solid #ddd;
+  margin-top:52px;
+  height: 60px;
+  background-color: #f5f5f5;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+
+.title{
+  margin:20px 0 30px;
+  font-size: 16px;
+  padding-bottom: 3px;
+  border-bottom: 2px solid #357EBD;
+  overflow: hidden;
+}
+.title .fl{
+  height: 30px;
+  line-height: 30px;
+  font-weight: 700;
+}
+
+.pagination-box{
+  float: right;
+}
+.pagination-box .info{
+  height: 34px;
+  line-height: 34px;
+  float: left;
+  display: inline-block;
+}
+.pagination-box .pagination{
+  margin: 0;
+}
+
+
+.popover.user-menu{
+  position: absolute;
+  right: 70px;
+  left: auto;
+  top: auto;
+  height: auto;
+  bottom: 100px;
+  color: #333;
+}
+.ta-column-left .popover a{
+  color: #808080;
+}
+.ta-column-left .popover a:hover{
+  color:#2ea3ce;
+}
+
+
+.content_ellipsis{
+  display: inline-block;
+  width:300px;
+  /*height: 17px;*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size:14px;
+}
+.content_ellipsis.expand{
+  height: auto;
+  overflow: visible;
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: normal;
+}
+
+select{height:30px;margin-top:4px;line-height:30px;}
+select{width:220px;border:1px solid #cccccc;background-color:#ffffff;}
+.table.table-bordered td,
+.table.table-bordered td{
+  background: #fff;
+}
+
+.form-horizontal{
+  background: #fff;
+  padding:20px 20px 20px 0;
+}
+
+
+
+.wrapper{
+  min-height: 100%;
+  position: relative;
+}
+.chatbox,
+.contactbox{
+  height: 100%;
+  box-shadow: 0 0 16px #999;
+  -webkit-box-shadow: 0 0 5px #999;
+  -moz-box-shadow: 0 0 5px #999;
+  border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  background: #fff;
+  overflow: hidden;
+  padding-bottom: 45px;
+  min-height: 500px;
+}
+.chatbox{
+  width:65%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-height: 650px;
+}
+.contactbox{
+  position: relative;
+  margin-left: 70%;
+}
+
+.chatbox>.chat_title,
+.contactbox>.contact_title{
+  font-size: 18px;
+  background: #32404E;
+  height: 45px;
+  line-height: 45px;
+  padding-left: 10px;
+  color: #fff;
+}
+.contactbox>ul.contact_list{
+  overflow: auto;
+  height: 100%;
+}
+.contactbox>ul.contact_list>li>a{
+  display: block;
+  overflow:hidden;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+.contactbox>ul.contact_list>li>a>img{
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  width: 50px;
+  height: 50px;
+  margin: 10px 10px 0 10px;
+  float: left;
+}
+.contactbox>ul.contact_list>li>a>h3{
+  font-size: 16px;
+  height: 26px;
+  line-height: 26px;
+  margin: 10px 0 3px;
+  color: #333;
+}
+.contactbox>ul.contact_list>li>a>p{
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 0;
+}
+.contactbox>ul.contact_list>li>a>p>.fr{
+  font-size: 12px;
+  margin-right: 10px;
+}
+.contactbox>ul.contact_list>li.no_friend{
+  text-align: center;
+  color:#aaa;
+  height: 60px;
+  line-height: 60px;
+}
+
+.chatbox>.chat_tool,
+.contactbox>.contact_tool{
+  background: #e4e4e4;
+  height: 45px;
+  line-height: 45px;
+  padding-left: 10px;
+  color: #777;
+  font-size: 12px;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+.chatbox>.chat_tool>.fr,
+.contactbox>.contact_tool>.fr{
+  margin-right: 10px;
+}
+.chat_wall{
+  padding:10px;
+  overflow: auto;
+}
+.chat_time{
+  font-size: 12px;
+  color:#336efc;
+}
+.chat_time.mine{
+  color: #008040;
+}
+.chat_content{
+  margin:0 15px 20px;
+}
+.chat_content>img{
+  max-height: 950px;
+  width: auto;
+  max-width: 570px;
+}
+.chat_body,
+.chat_wall{
+  min-height: 300px;
+  max-height: 450px;
+}
+
+.chat_input{
+  position: absolute;
+  left:0;
+  bottom: 45px;
+  width: 100%;
+  border-top: 10px solid #e4e4e4;
+  height: 110px;
+}
+.chat_input>.chat_input_inner{
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  outline: none;
+  overflow: hidden;
+}
+.chat_input>.chat_input_inner>img{
+  max-height: 90px;
+  max-width: 520px;
+  width: auto;
+}
+
+.get_lnglat{
+  cursor: pointer;
+}
+
+#allmap{
+  width: 100%;
+  min-height: 400px;
+  max-height: 800px;
+  overflow: hidden;
+  margin:0;
+}
+.modal .modal-body{
+  padding: 0;
+}
+
+
+.btn_send,
+.btn_close{
+  outline: none;
+}
+
+.statistic_wrapper{
+  /*overflow: hidden;*/
+}
+
+.statistic_wrapper>.row>.col-lg-4{
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.statistic_wrapper>.row ul>li>strong{
+  margin-right: 15px;
+  font-weight: normal;
+  color: #999;
+}
+
+.bg_a_wrap>img{
+  width: 140px;
+  height: 140px;
+  margin:2px;
+  opacity: 0.7;
+}
+a.bg_a_wrap:hover>img{
+  border-color:#32404E;
+  opacity: 1;
+}

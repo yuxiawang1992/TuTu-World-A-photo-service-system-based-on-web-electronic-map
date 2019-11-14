@@ -1,0 +1,127 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>UTFGrid图层世界国旗版</title>
+    <style type="text/css">
+        body{
+            margin: 0;
+            overflow: hidden;
+            background: #fff;
+        }
+        #map{
+            position: relative;
+            height: 558px;
+            border:1px solid #3473b7;
+        }
+    </style>
+    <script src='../libs/SuperMap.Include.js'></script>
+    <script src="js/flags.js"></script>
+    <script type="text/javascript">
+        var map,infowin,layer,utfgrid,control,
+                host = document.location.toString().match(/file:\/\//)?"http://localhost:8090":'http://' + document.location.host,
+                url=host+"/iserver/services/map-world/rest/maps/世界地图_Day";
+        function init(){
+            map = new SuperMap.Map("map", {controls: [
+                new SuperMap.Control.ScaleLine(),
+                new SuperMap.Control.Zoom(),
+                new SuperMap.Control.LayerSwitcher(),
+                new SuperMap.Control.Navigation({
+                    dragPanOptions: {
+                        enableKinetic: true
+                    }
+                })],
+                projection: "EPSG:4326"
+            });
+
+            layer = new SuperMap.Layer.TiledDynamicRESTLayer("世界地图_Day", url, {transparent: true}, {useCanvas: true, maxResolution: "auto"});
+
+            utfgrid = new SuperMap.Layer.UTFGrid("UTFGridLayer", url,
+                    {
+                        layerName: "Countries@World",
+                        utfTileSize: 256,
+                        pixcell: 2,
+                        isUseCache: false
+                    },
+                    {
+                        utfgridResolution: 2
+                    });
+
+            layer.events.on({"layerInitialized": addLayer});
+            control = new SuperMap.Control.UTFGrid({
+                layers: [utfgrid],
+                callback: callback1,
+                handlerMode: "move"
+            });
+            map.addControl(control);
+        }
+
+        var eareChange = "";
+        function callback1(infoLookup, loc, pixel) {
+            closeInfoWin();
+
+            var showFlag = document.getElementById("countryFlag");
+            showFlag.width = 240;
+            showFlag.height = 160;
+            var showName = document.getElementById("countryName");
+            showName.top = 160;
+
+            if (infoLookup) {
+                var info;
+                for (var idx in infoLookup) {
+                    info = infoLookup[idx];
+                    if (info && info.data){
+                        var  eaeeName = info.data.COUNTRY.toString().trim();
+                        if(eaeeName != eareChange)
+                        {
+                            var findedflag = false;
+                            for(var i=0;i<flags.length;i++){
+                                if(flags[i][0] == eaeeName)
+                                {
+                                    showFlag.src = "data:image/png;base64," + flags[i][1];
+                                    findedflag = true;
+                                }
+                            }
+                            if(!findedflag){
+                                showFlag.src = "data:image/png;base64," + flags[0][1];
+                                findedflag = false;
+                            }
+                            showName.innerHTML =  "<span>"+ info.data.COUNTRY.toString() +"</span>";
+                            eareChange = eaeeName;
+                        }
+                        else{}
+                    }else{
+                        showFlag.width = 0;
+                        showFlag.height = 0;
+                        showName.innerHTML = "";
+                        eareChange = "";
+                    }
+                }
+            }
+        };
+
+        function closeInfoWin() {
+            if (infowin) {
+                try {
+                    map.removePopup(infowin)
+                }
+                catch (e) {
+                }
+            }
+        }
+
+        function addLayer() {
+            var center = new SuperMap.LonLat(0, 0);
+            map.addLayers([layer, utfgrid]);
+            map.setCenter(center, 0);
+        }
+    </script>
+</head>
+<body onload="init()">
+<div id="map"></div>
+<div style="position: absolute; top:25px; left:50px; opacity: 0.8; background-color: lightslategray">
+    <img  id="countryFlag"/>
+    <div id="countryName"  style=" text-align:center"></div>
+</div>
+</body>
+</html>
