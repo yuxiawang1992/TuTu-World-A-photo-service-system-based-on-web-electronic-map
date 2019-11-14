@@ -7,11 +7,11 @@ This project had won SuperMap Cup the 12th National College GIS Competition, Nat
 
 System running example:
 <iframe 
-    height=450 
-    width=800 
+    height="450"
+    width="800"
     src='https://github.com/yuxiawang1992/TuTu-World-A-photo-service-system-based-on-web-electronic-map/tree/master/%E4%BD%9C%E5%93%81%E5%B1%95%E7%A4%BA/%E7%B3%BB%E7%BB%9F%E8%BF%90%E8%A1%8C%E6%BC%94%E7%A4%BA' 
-    frameborder=0 
-    'allowfullscreen'>
+    frameborder="0" 
+    "allowfullscreen">
 </iframe>
 
 
