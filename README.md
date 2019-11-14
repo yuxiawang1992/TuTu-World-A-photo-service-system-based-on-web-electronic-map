@@ -8,22 +8,29 @@ This project had won SuperMap Cup the 12th National College GIS Competition, Nat
 ## System running example:
 
 照片定位赏析
+
 <img src= "/作品展示/系统精彩截图/2-照片定位赏析.jpg" width=500 >
 
 全局检索
+
 <img src= "/作品展示/系统精彩截图/4-全局检索.jpg" width=500 >
 
 路径查询
+
 <img src= "/作品展示/系统精彩截图/6-路径查询.jpg" width="500" >
 
 个人信息门户
+
 <img src= "/作品展示/系统精彩截图/10-个人信息+背景设置.jpg" width="500" > 
 
 个人相册列表
+
 <img src = "/作品展示/系统精彩截图/15-照片列表.jpg" width = "500">
 
 好友聊天
+
 <img src = "/作品展示/系统精彩截图/17-好友聊天1—文字发送.jpg" width = "500">
 
 个人中心退出界面
+
 <img src = "/作品展示/系统精彩截图/20-个人中心退出界面.jpg" width = "500">
